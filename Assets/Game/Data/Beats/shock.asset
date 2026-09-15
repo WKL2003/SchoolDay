@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c40cd3ef56e4466ab5004d5e9032547, type: 3}
+  m_Name: shock
+  m_EditorClassIdentifier: Assembly-CSharp::SchoolDay.BeatData
+  Id: shock
+  Title: Surprise bill
+  BodyLine: Something you didn't budget for.
+  Speaker: 4
+  Phase: 2
+  Background: {fileID: 21300000, guid: 66a74ddcc0db5414cbe783c2c6c582e7, type: 3}
+  Choices:
+  - {fileID: 11400000, guid: 5516b21c7dbcc4cac830fe6571d5f878, type: 2}
+  - {fileID: 11400000, guid: 4d3841f7999474764845927c9e3986f6, type: 2}

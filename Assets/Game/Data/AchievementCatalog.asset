@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b2c3d4e5f6091a2b3c4d5e6f708192a, type: 3}
+  m_Name: AchievementCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::SchoolDay.AchievementCatalog
+  Items:
+  - {fileID: 11400000, guid: 5913adbccd8f4ab9954fe008e86a6646, type: 2}
+  - {fileID: 11400000, guid: 52704cebb28d43a094e9d0772175611b, type: 2}
+  - {fileID: 11400000, guid: c6bc3c92e82b4a1f88344a6fb8b9a3c6, type: 2}
+  - {fileID: 11400000, guid: 58e2826e565d4b96877f1c90648667ad, type: 2}
+  - {fileID: 11400000, guid: 9af9f8b79eda44a4ba1568b3ce8852a3, type: 2}
+  - {fileID: 11400000, guid: b1ec8323df1a43eabc97b7db63a6deb8, type: 2}
+  - {fileID: 11400000, guid: 49308077b5c14ecc90f8f163f174cff7, type: 2}
+  - {fileID: 11400000, guid: fae76a766b6742069f2af50132abfbdd, type: 2}
+  - {fileID: 11400000, guid: 8612facf39a94ec9a0451cb6603873c0, type: 2}
+  - {fileID: 11400000, guid: bb54006541db4f57a9a8088404354f5b, type: 2}
+  - {fileID: 11400000, guid: 7d66650a81af4d778edcaed44e271a65, type: 2}
+  - {fileID: 11400000, guid: e65ba02333ac418fac86cc6d5623b335, type: 2}
+  - {fileID: 11400000, guid: 375712fa6cd14c5083963e766c198aa3, type: 2}

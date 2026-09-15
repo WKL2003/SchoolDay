@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>$8 SCHOOL DAY — live metrics</title>
+  <script src="./config.js"></script>
+  <style>
+    :root {
+      --bg: #121416;
+      --panel: #1c1f24;
+      --line: #2a2e35;
+      --text: #e0dbd1;
+      --muted: #99968e;
+      --gold: #b39966;
+      --fuel: #668c75;
+      --bad: #b86b61;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 15px/1.45 "Avenir Next", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      padding: 28px 32px 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+    header p {
+      margin: 6px 0 16px;
+      color: var(--muted);
+    }
+    #status {
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    main { padding: 24px 32px 48px; }
+    h2 {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+      margin: 28px 0 10px;
+    }
+    h2:first-of-type { margin-top: 0; }
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .tile {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 14px 16px 12px;
+    }
+    .tile .label {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .tile .value {
+      margin-top: 8px;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--gold);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+    th, td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+      vertical-align: middle;
+    }
+    th {
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+    tr:last-child td { border-bottom: 0; }
+    .num {
+      text-align: left;
+      font-variant-numeric: tabular-nums;
+    }
+    .roster, .detail-table {
+      table-layout: fixed;
+    }
+    .roster col.c-player, .detail-table col.c-player { width: 15%; }
+    .roster col.c-status, .detail-table col.c-status,
+    .roster col.c-over, .detail-table col.c-over,
+    .roster col.c-rep, .detail-table col.c-rep,
+    .roster col.c-result, .detail-table col.c-result,
+    .roster col.c-cash, .detail-table col.c-cash { width: 15%; }
+    .roster col.c-action, .detail-table col.c-action { width: 10%; }
+    .roster th.c-action, .roster td.c-action,
+    .detail-table th.c-action, .detail-table td.c-action { text-align: right; }
+    .roster td.detail-cell {
+      padding: 0;
+      background: var(--bg);
+      vertical-align: top;
+    }
+    .leak { color: var(--bad); }
+    .ok { color: var(--fuel); }
+    .empty { color: var(--muted); padding: 10px 12px; }
+    button.detail {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 4px 10px;
+      font: inherit;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .live { color: var(--gold); }
+    .detail-box {
+      margin: 0;
+      border: 0;
+      border-top: 1px solid var(--line);
+      background: var(--bg);
+    }
+    table.detail-table {
+      width: 100%;
+      border: 0;
+      background: transparent;
+    }
+    .detail-table th, .detail-table td {
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      font-size: 12px;
+      vertical-align: middle;
+    }
+    .detail-table tr:last-child th,
+    .detail-table tr:last-child td { border-bottom: 0; }
+    .detail-table .morning-head th {
+      padding: 12px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      background: var(--bg);
+      text-align: left;
+    }
+    .detail-table .morning-head .live { letter-spacing: 0.12em; }
+    .detail-table td.time {
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .detail-table .detail-badges td {
+      padding: 10px 12px 14px;
+    }
+    .detail-badges .label {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .badge-chip {
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 2px 8px;
+      font-size: 12px;
+    }
+    @media (max-width: 800px) {
+      .tiles { grid-template-columns: 1fr 1fr; }
+      header, main { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>$8 SCHOOL DAY</h1>
+    <p>Class overview, then one row per student. Detail keeps every morning, newest first.</p>
+    <div id="status">waiting</div>
+  </header>
+  <main>
+    <h2>Class overview</h2>
+    <div class="tiles">
+      <div class="tile"><div class="label">Students</div><div class="value" id="sessions">—</div></div>
+      <div class="tile"><div class="label">Top leak</div><div class="value" id="leak">—</div></div>
+      <div class="tile"><div class="label">Reputation</div><div class="value" id="reputation">—</div></div>
+      <div class="tile"><div class="label">Unique unlocks</div><div class="value" id="unlocks">—</div></div>
+      <div class="tile"><div class="label">Avg pocket</div><div class="value" id="pocket">—</div></div>
+    </div>
+
+    <h2>Students</h2>
+    <table class="roster">
+      <colgroup>
+        <col class="c-player">
+        <col class="c-status">
+        <col class="c-over">
+        <col class="c-rep">
+        <col class="c-result">
+        <col class="c-cash">
+        <col class="c-action">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Status</th>
+          <th>Overspend</th>
+          <th>Reputation</th>
+          <th>Total spent</th>
+          <th>Pocket</th>
+          <th class="c-action"></th>
+        </tr>
+      </thead>
+      <tbody id="plays">
+        <tr><td class="empty" colspan="7">Play a School Day. Students appear here.</td></tr>
+      </tbody>
+    </table>
+  </main>
+  <script>
+    const API = (window.SCHOOLDAY_API || "").replace(/\/$/, "");
+    let openId = "";
+    let lastPlays = [];
+
+    function url(path) { return API ? API + path : path; }
+
+    function reputationPct(play) {
+      if (!play || typeof play !== "object") return 0;
+      const posted = Number(play.reputation);
+      if (Number.isFinite(posted))
+        return Math.max(0, Math.min(100, Math.round(posted)));
+      const fuel = Number(play.fuel);
+      const face = Number(play.face);
+      const pocket = Number(play.pocket);
+      const punctual = Number.isFinite(fuel) ? Math.max(0, Math.min(100, fuel)) : 0;
+      const friendly = Number.isFinite(face) ? Math.max(0, Math.min(100, face)) : 0;
+      let adaptive = 0;
+      if (play.went_broke) adaptive = 0;
+      else if (Number.isFinite(pocket) && pocket >= 2) adaptive = 100;
+      else if (Number.isFinite(pocket) && pocket > 0) adaptive = 100 * pocket / 2;
+      const over = String(play.overspend || "").toLowerCase();
+      if (over === "grab" || over === "drinks") adaptive *= 0.5;
+      let generous = 50;
+      const reached = isDone(play) || (play.expenses || []).some(function (row) {
+        return (row.beat_id || "") === "shock";
+      });
+      if (reached) generous = play.shock_survived ? 100 : 0;
+      return Math.max(0, Math.min(100, Math.round((punctual + friendly + adaptive + generous) / 4)));
+    }
+
+    function reputationHtml(play) {
+      const n = reputationPct(play);
+      const label = n + "%";
+      if (n >= 50) return '<span class="ok">' + label + "</span>";
+      return '<span class="leak">' + label + "</span>";
+    }
+
+    function cash(n) {
+      const x = Number(n);
+      const v = Number.isFinite(x) ? x : 0;
+      const neg = v < -0.001;
+      const abs = Math.abs(v);
+      const body = Math.abs(abs - Math.round(abs)) < 0.001 ? String(Math.round(abs)) : abs.toFixed(2);
+      return (neg ? "\u2212$" : "$") + body;
+    }
+
+    const BADGE_NAMES = {
+      shock_cca: "CCA T-shirt",
+      shock_rice: "Help buy rice",
+      shock_printer: "Print notes",
+      shock_fieldtrip: "Field trip form",
+      shock_phone: "Phone cable",
+      shock_sibling: "Sibling's textbook",
+      shock_clinic: "Polyclinic copay",
+      shock_birthday: "Friend's birthday gift",
+      shock_photo: "Class photo",
+      shock_peshoes: "PE shoes",
+      shock_thumbdrive: "Thumb drive",
+      shock_concession: "Concession top-up",
+      buffer_kid: "Kept $2"
+    };
+
+    const STEP_NAMES = {
+      title_monday: "Start",
+      breakfast: "Breakfast",
+      transit: "Getting to school",
+      fomo: "After school",
+      shock: "Surprise bill"
+    };
+
+    const CHOICE_NAMES = {
+      title_start: "I'm ready",
+      breakfast_skip: "Skip breakfast",
+      breakfast_nasi: "Canteen nasi lemak",
+      breakfast_toastbox: "Toast Box",
+      breakfast_home: "Packed from home",
+      breakfast_beehoon: "Canteen bee hoon",
+      breakfast_caipng: "Cai png",
+      breakfast_mcd: "McDonald's breakfast",
+      breakfast_milopeng: "Milo peng",
+      transit_walk: "Walk",
+      transit_bus: "Bus",
+      transit_grab: "Grab",
+      transit_mrt: "MRT",
+      transit_friendcar: "Friend's car",
+      transit_grabfood_ride: "Grab",
+      transit_latebus: "Express bus",
+      fomo_gongcha: "Gong Cha",
+      fomo_snack: "$1 snack",
+      fomo_next: "Next payday",
+      fomo_liho: "LiHO",
+      fomo_kfc: "Sharing KFC",
+      fomo_arcade: "Arcade",
+      fomo_movie: "Last-minute movie",
+      fomo_stayback: "Stay back / study",
+      shock_cca: "CCA T-shirt",
+      shock_rice: "Help buy rice",
+      shock_printer: "Print notes",
+      shock_fieldtrip: "Field trip form",
+      shock_phone: "Phone cable",
+      shock_sibling: "Sibling's textbook",
+      shock_clinic: "Polyclinic copay",
+      shock_birthday: "Friend's birthday gift",
+      shock_photo: "Class photo",
+      shock_peshoes: "PE shoes",
+      shock_thumbdrive: "Thumb drive",
+      shock_concession: "Concession top-up"
+    };
+
+    function prettyUnlock(id) {
+      if (!id) return "";
+      if (id === "buffer_kid") return "Kept $2";
+      if (BADGE_NAMES[id]) return BADGE_NAMES[id];
+      if (CHOICE_NAMES[id]) return CHOICE_NAMES[id];
+      let s = String(id);
+      if (s.indexOf("shock_") === 0) s = s.slice(6);
+      return s.replace(/_/g, " ");
+    }
+
+    function prettyStep(id, fallback) {
+      if (id && STEP_NAMES[id]) return STEP_NAMES[id];
+      const text = fallback || id || "—";
+      if (String(text).toLowerCase() === "shock") return "Surprise bill";
+      return text;
+    }
+
+    function prettyChoice(id, fallback) {
+      if (fallback) return fallback;
+      if (!id) return "—";
+      return CHOICE_NAMES[id] || prettyUnlock(id);
+    }
+
+    function isSkippedBill(row) {
+      if (!row) return false;
+      if (row.declined) return true;
+      const beatId = String(row.beat_id || "").toLowerCase();
+      const beatName = String(row.beat_name || "").toLowerCase();
+      const cost = Number(row.cost);
+      const unpaid = !Number.isFinite(cost) || cost <= 0;
+      return unpaid && (beatId === "shock" || beatName === "shock" || beatName === "surprise bill");
+    }
+
+    function isSkipMeal(name) {
+      const n = String(name || "").trim().toLowerCase().replace(/[_-]/g, " ");
+      if (!n || n === "none") return true;
+      return n.indexOf("skip") !== -1 && n.indexOf("meal") !== -1;
+    }
+
+    function overspendShown(name) {
+      const raw = String(name || "").trim();
+      if (!raw || isSkipMeal(raw)) return "";
+      return raw;
+    }
+
+    function prettyOverspend(name) {
+      return overspendShown(name) || "None";
+    }
+
+    function parseTs(ts) {
+      if (!ts) return null;
+      const d = new Date(ts);
+      return isNaN(d.getTime()) ? null : d;
+    }
+
+    function prettyWhen(ts) {
+      const d = parseTs(ts);
+      if (!d) return ts || "—";
+      return d.toLocaleString(undefined, {
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit"
+      });
+    }
+
+    function prettyClock(ts) {
+      const d = parseTs(ts);
+      if (!d) return "—";
+      return d.toLocaleTimeString(undefined, {
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit"
+      });
+    }
+
+    function shortId(id) {
+      if (!id) return "—";
+      return id.slice(0, 8);
+    }
+
+    function playId(play) {
+      return play.player_id || play.session_id || "";
+    }
+
+    function statusOf(play) {
+      return play.status || (play.playing ? "playing" : "done");
+    }
+
+    function isDone(play) {
+      const s = statusOf(play);
+      return s === "done" || s === "report";
+    }
+
+    function statusLabel(play) {
+      const s = statusOf(play);
+      if (s === "playing") return '<span class="live">Playing</span>';
+      if (s === "left") return "Left";
+      return "Done";
+    }
+
+    function billLabel(play) {
+      if (!isDone(play)) return "—";
+      return play.shock_survived ? "Paid" : "Skipped";
+    }
+
+    function morningBlocks(play) {
+      if (play.mornings && play.mornings.length)
+        return play.mornings;
+      return [play];
+    }
+
+    function totalSpent(play) {
+      const blocks = morningBlocks(play);
+      let sum = 0;
+      for (let i = 0; i < blocks.length; i++) {
+        const rows = blocks[i].expenses || [];
+        for (let j = 0; j < rows.length; j++) {
+          const n = Number(rows[j].cost);
+          if (Number.isFinite(n)) sum += n;
+        }
+      }
+      return sum;
+    }
+
+    function headerOverspend(play) {
+      const blocks = morningBlocks(play);
+      for (let i = 0; i < blocks.length; i++) {
+        const label = overspendShown(blocks[i].overspend || blocks[i].named_leak);
+        if (label) return prettyOverspend(label);
+        if (isDone(blocks[i])) return "None";
+      }
+      return "—";
+    }
+
+    function headerPocket(play) {
+      const blocks = morningBlocks(play);
+      for (let i = 0; i < blocks.length; i++) {
+        const n = Number(blocks[i].pocket);
+        if (Number.isFinite(n)) return n;
+      }
+      const n = Number(play.pocket);
+      return Number.isFinite(n) ? n : 0;
+    }
+
+    function morningBadgeIds(block) {
+      const ids = [];
+      const seen = {};
+      const raw = (block && block.badges) || [];
+      for (let i = 0; i < raw.length; i++) {
+        const id = raw[i];
+        if (!id || seen[id]) continue;
+        seen[id] = true;
+        ids.push(id);
+      }
+      if (block && block.buffer_kid && !seen.buffer_kid) {
+        ids.push("buffer_kid");
+      }
+      return ids;
+    }
+
+    function playerBadges(block) {
+      const ids = morningBadgeIds(block);
+      if (!ids.length) {
+        return '<div class="empty" style="padding:0">No badges this morning.</div>';
+      }
+      return '<div class="badge-list">' + ids.map(function (id) {
+        return '<span class="badge-chip">' + prettyUnlock(id) + "</span>";
+      }).join("") + "</div>";
+    }
+
+    function classBadgeCount(plays) {
+      const seen = {};
+      for (let i = 0; i < plays.length; i++) {
+        const blocks = morningBlocks(plays[i]);
+        for (let j = 0; j < blocks.length; j++) {
+          const ids = morningBadgeIds(blocks[j]);
+          for (let k = 0; k < ids.length; k++) {
+            seen[ids[k]] = true;
+          }
+        }
+      }
+      return Object.keys(seen).length;
+    }
+
+    function morningHead(block, index, total) {
+      const n = block.morning || (total - index);
+      const when = prettyWhen(block.started_ts || block.last_ts);
+      const live = statusOf(block) === "playing"
+        ? ' · <span class="live">Playing</span>'
+        : "";
+      return '<tr class="morning-head"><th colspan="7">Morning ' + n + " · " + when + live + "</th></tr>";
+    }
+
+    function colHeads() {
+      return "<tr>" +
+        "<th>Time</th>" +
+        "<th>Beat</th>" +
+        "<th>Choice</th>" +
+        "<th></th>" +
+        '<th class="num">Cost</th>' +
+        '<th class="num">Pocket after</th>' +
+        '<th class="c-action"></th>' +
+        "</tr>";
+    }
+
+    function expenseRows(rows) {
+      if (!rows.length) {
+        return '<tr><td class="empty" colspan="7">Nothing spent yet.</td></tr>';
+      }
+      return rows.map(function (row) {
+        const tag = overspendShown(row.overspend || row.named_leak);
+        const extra = tag ? ' <span class="leak">' + tag + "</span>" : "";
+        return "<tr>" +
+          '<td class="time">' + prettyClock(row.ts) + "</td>" +
+          "<td>" + prettyStep(row.beat_id, row.beat_name) + "</td>" +
+          "<td>" + (isSkippedBill(row) ? "Skipped" : prettyChoice(row.choice_id, row.choice_name)) + extra + "</td>" +
+          "<td></td>" +
+          '<td class="num">' + cash(row.cost) + "</td>" +
+          '<td class="num">' + cash(row.pocket) + "</td>" +
+          '<td class="c-action"></td>' +
+          "</tr>";
+      }).join("");
+    }
+
+    function morningBlock(block, index, total) {
+      return morningHead(block, index, total) +
+        colHeads() +
+        expenseRows(block.expenses || []) +
+        '<tr class="detail-badges"><td colspan="7"><div class="label">Badges</div>' +
+        playerBadges(block) + "</td></tr>";
+    }
+
+    function expenseTable(play) {
+      let blocks = play.mornings && play.mornings.length ? play.mornings : [play];
+      blocks = blocks.filter(function (block, i) {
+        if ((block.expenses || []).length) return true;
+        if (statusOf(block) === "playing") return true;
+        return i === 0 && blocks.length === 1;
+      });
+      const body = blocks.map(function (block, i) {
+        return morningBlock(block, i, play.morning_count || blocks.length);
+      }).join("");
+      return '<div class="detail-box"><table class="detail-table">' +
+        "<colgroup>" +
+        '<col class="c-player"><col class="c-status"><col class="c-over">' +
+        '<col class="c-rep"><col class="c-result"><col class="c-cash">' +
+        '<col class="c-action">' +
+        "</colgroup><tbody>" + body + "</tbody></table></div>";
+    }
+
+    function paint(data) {
+      lastPlays = data.plays || [];
+      document.getElementById("sessions").textContent = data.sessions;
+      const classRep = data.avg_reputation != null && data.avg_reputation !== ""
+        ? Math.max(0, Math.min(100, Math.round(Number(data.avg_reputation) || 0)))
+        : (lastPlays.length
+          ? Math.round(lastPlays.reduce(function (sum, play) { return sum + reputationPct(play); }, 0) / lastPlays.length)
+          : 0);
+      document.getElementById("reputation").textContent = classRep + "%";
+      document.getElementById("leak").textContent = prettyOverspend(data.top_leak);
+      document.getElementById("pocket").textContent = cash(data.avg_pocket);
+      document.getElementById("unlocks").textContent = classBadgeCount(lastPlays);
+      const body = document.getElementById("plays");
+      if (!lastPlays.length) {
+        body.innerHTML = '<tr><td class="empty" colspan="7">Play a School Day. Students appear here.</td></tr>';
+        return;
+      }
+
+      body.innerHTML = lastPlays.map(function (play) {
+        const id = playId(play);
+        const open = openId === id;
+        const who = (play.look_id || "Player") + " · " + shortId(id);
+        const status = statusLabel(play);
+        const overspend = headerOverspend(play);
+        const overspendHtml = overspend !== "None" && overspend !== "—"
+          ? '<span class="leak">' + overspend + "</span>"
+          : overspend;
+        const btn = open ? "Close" : "Detail";
+        let row = "<tr>" +
+          "<td>" + who + "</td>" +
+          "<td>" + status + "</td>" +
+          "<td>" + overspendHtml + "</td>" +
+          '<td class="num">' + reputationHtml(play) + "</td>" +
+          '<td class="num">' + cash(totalSpent(play)) + "</td>" +
+          '<td class="num">' + cash(headerPocket(play)) + "</td>" +
+          '<td class="c-action"><button class="detail" data-id="' + id + '">' + btn + "</button></td>" +
+          "</tr>";
+        if (open) {
+          row += '<tr><td class="detail-cell" colspan="7">' + expenseTable(play) + "</td></tr>";
+        }
+        return row;
+      }).join("");
+    }
+
+    document.getElementById("plays").addEventListener("click", function (ev) {
+      const btn = ev.target.closest("button.detail");
+      if (!btn) return;
+      const id = btn.getAttribute("data-id") || "";
+      openId = openId === id ? "" : id;
+      if (window.__lastSummary) paint(window.__lastSummary);
+    });
+
+    async function tick() {
+      const status = document.getElementById("status");
+      try {
+        const res = await fetch(url("/summary"), { cache: "no-store" });
+        if (!res.ok) throw new Error(res.status);
+        const data = await res.json();
+        window.__lastSummary = data;
+        paint(data);
+        status.textContent = "live · " + new Date().toLocaleTimeString();
+      } catch (err) {
+        status.textContent = "offline · " + err.message;
+      }
+    }
+
+    tick();
+    setInterval(tick, 3000);
+  </script>
+</body>
+</html>

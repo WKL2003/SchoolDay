@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46451a32519c46e388d225dc9264d699, type: 3}
+  m_Name: FomoPool
+  m_EditorClassIdentifier: Assembly-CSharp::SchoolDay.ChoicePool
+  Items:
+  - {fileID: 11400000, guid: d7329d073d65645118d6e9908c256259, type: 2}
+  - {fileID: 11400000, guid: 726dcd27da7b24b0b8e66b2a93e442cd, type: 2}
+  - {fileID: 11400000, guid: 4cdad20e6e9634ae482293626b810587, type: 2}
+  - {fileID: 11400000, guid: 4e3fdb05d6be43fb996d89fdbf37128a, type: 2}
+  - {fileID: 11400000, guid: 3b1cf2c9655343398e5b5d828f54f454, type: 2}
+  - {fileID: 11400000, guid: 9b38f8b64cfa4f7fb2e16f4a037d5aaf, type: 2}
+  - {fileID: 11400000, guid: cb2b07d0bd6349ea9da642a6c43e27df, type: 2}
+  - {fileID: 11400000, guid: e03b690c9206440b915b979766d9e69a, type: 2}
+  Slots:
+  - Label: Social
+    UseCostRange: 1
+    MinCost: 4.5
+    MaxCost: 8
+    RequireLateRisk: 0
+    RequireNegativeFace: 0
+    UseLeak: 0
+    Leak: 0
+    UseOverspend: 0
+    Overspend: 0
+  - Label: Cheap
+    UseCostRange: 1
+    MinCost: 1
+    MaxCost: 2
+    RequireLateRisk: 0
+    RequireNegativeFace: 0
+    UseLeak: 0
+    Leak: 0
+    UseOverspend: 0
+    Overspend: 0
+  - Label: Decline
+    UseCostRange: 1
+    MinCost: 0
+    MaxCost: 0
+    RequireLateRisk: 0
+    RequireNegativeFace: 1
+    UseLeak: 0
+    Leak: 0
+    UseOverspend: 0
+    Overspend: 0
+  ShuffleOrder: 1

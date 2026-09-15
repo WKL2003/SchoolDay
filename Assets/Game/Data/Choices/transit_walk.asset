@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fe54b4c9585450aad5c412e2f4ab57, type: 3}
+  m_Name: transit_walk
+  m_EditorClassIdentifier: Assembly-CSharp::SchoolDay.ChoiceData
+  Id: transit_walk
+  DisplayName: Walk
+  PromptLine: I'll make it if I hustle.
+  Cost: 0
+  Delta:
+    PocketCost: 0
+    FuelChange: -10
+    FaceChange: -4
+    BufferChange: 0
+    LateRisk: 1
+    MarksLeak: 0
+  LeakTag: 0
+  Overspend: 0
+  Icon: {fileID: 21300000, guid: 8cd30ef7b5ba245238aed81ecfa394a5, type: 3}
+  Backdrop: {fileID: 0}

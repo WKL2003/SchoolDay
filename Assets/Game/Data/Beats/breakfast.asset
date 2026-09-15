@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c40cd3ef56e4466ab5004d5e9032547, type: 3}
+  m_Name: breakfast
+  m_EditorClassIdentifier: Assembly-CSharp::SchoolDay.BeatData
+  Id: breakfast
+  Title: Breakfast
+  BodyLine: Auntie already packed the trays. What are you eating?
+  Speaker: 1
+  Phase: 1
+  Background: {fileID: 21300000, guid: b7deb69499ce549fbbc79d2e8b21fc2c, type: 3}
+  Choices:
+  - {fileID: 11400000, guid: 3fbab660986534c30ad8d445fc79d405, type: 2}
+  - {fileID: 11400000, guid: 926e9dfd5a82246b6b7f692c777da61e, type: 2}
+  - {fileID: 11400000, guid: a340c40b800914c999748bab3100b35c, type: 2}

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55fe54b4c9585450aad5c412e2f4ab57, type: 3}
+  m_Name: shock_photo
+  m_EditorClassIdentifier: Assembly-CSharp::SchoolDay.ChoiceData
+  Id: shock_photo
+  DisplayName: Class photo
+  PromptLine: Form teacher: $5 or you are not in the print.
+  Cost: 5
+  Delta:
+    PocketCost: 5
+    FuelChange: 0
+    FaceChange: 8
+    BufferChange: 0
+    LateRisk: 0
+    MarksLeak: 0
+  LeakTag: 0
+  Overspend: 2
+  Icon: {fileID: 21300000, guid: 05162738495a6b7c8d9e0f1a2b3c4d5e, type: 3}
+  Backdrop: {fileID: 21300000, guid: 495a6b7c8d9e0f1a2b3c4d5e6f708192, type: 3}

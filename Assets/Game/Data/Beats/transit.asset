@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c40cd3ef56e4466ab5004d5e9032547, type: 3}
+  m_Name: transit
+  m_EditorClassIdentifier: Assembly-CSharp::SchoolDay.BeatData
+  Id: transit
+  Title: Getting to school
+  BodyLine: Bell's in twenty. How are you getting in?
+  Speaker: 4
+  Phase: 1
+  Background: {fileID: 21300000, guid: 53b3a432f3b66473a85f33d266edbb64, type: 3}
+  Choices:
+  - {fileID: 11400000, guid: 44023f89f1cdb4548b7fea39b767dbd2, type: 2}
+  - {fileID: 11400000, guid: b9780e08f65df45868baf4991156b275, type: 2}
+  - {fileID: 11400000, guid: 004136afeb6ad40f7af8d6c4397c7fa9, type: 2}

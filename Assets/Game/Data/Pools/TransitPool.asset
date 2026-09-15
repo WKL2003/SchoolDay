@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46451a32519c46e388d225dc9264d699, type: 3}
+  m_Name: TransitPool
+  m_EditorClassIdentifier: Assembly-CSharp::SchoolDay.ChoicePool
+  Items:
+  - {fileID: 11400000, guid: 44023f89f1cdb4548b7fea39b767dbd2, type: 2}
+  - {fileID: 11400000, guid: b9780e08f65df45868baf4991156b275, type: 2}
+  - {fileID: 11400000, guid: 004136afeb6ad40f7af8d6c4397c7fa9, type: 2}
+  - {fileID: 11400000, guid: 432c381fd7b3436fa16429c6864b1c85, type: 2}
+  - {fileID: 11400000, guid: 254a3f21a2db493ca2a3815855c1f0ce, type: 2}
+  - {fileID: 11400000, guid: e13159ce784c4ec996ff8a5bca0b416c, type: 2}
+  - {fileID: 11400000, guid: 71bdbf97a86f4b15969678cffacc0f11, type: 2}
+  Slots:
+  - Label: Walk
+    UseCostRange: 1
+    MinCost: 0
+    MaxCost: 0
+    RequireLateRisk: 1
+    RequireNegativeFace: 0
+    UseLeak: 0
+    Leak: 0
+    UseOverspend: 0
+    Overspend: 0
+  - Label: Public tap
+    UseCostRange: 1
+    MinCost: 0.7
+    MaxCost: 1.5
+    RequireLateRisk: 0
+    RequireNegativeFace: 0
+    UseLeak: 0
+    Leak: 0
+    UseOverspend: 0
+    Overspend: 0
+  - Label: Paid ride
+    UseCostRange: 1
+    MinCost: 3
+    MaxCost: 12
+    RequireLateRisk: 0
+    RequireNegativeFace: 0
+    UseLeak: 0
+    Leak: 0
+    UseOverspend: 0
+    Overspend: 0
+  ShuffleOrder: 1

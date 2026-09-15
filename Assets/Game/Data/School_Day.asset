@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffab605f8303f4e2099e2599134e4b85, type: 3}
+  m_Name: School_Day
+  m_EditorClassIdentifier: Assembly-CSharp::SchoolDay.DayConfig
+  StartingPocket: 8
+  StartingFuel: 70
+  StartingFace: 55
+  StartingBuffer: 8
+  OvernightFuelDrop: 20
+  FuelMetThreshold: 45
+  BufferWin: 2
+  StatFloor: 0
+  StatCap: 100
+  LowFuelThreshold: 30
+  WalkLowFuelExtraHit: -6
+  DebtReputationPerDollar: 2
+  DebtReputationZeroAt: 8
+  ShockSkipFaceHit: 12
+  ShockPayFaceGain: 6
+  ReputationPunctualWeight: 1
+  ReputationFriendlyWeight: 1
+  ReputationAdaptiveWeight: 1
+  ReputationGenerousWeight: 1
+  ReputationLeakKeepScale: 0.75
+  ReputationGenerousPending: 50
+  ShockSeed: 0
+  LeakPriority: 010000000200000003000000
+  Beats:
+  - {fileID: 11400000, guid: 1a18b0ed1b15748e2903c69b07d1ec87, type: 2}
+  - {fileID: 11400000, guid: 5341090e1cd92476a97bffc5985a0d3e, type: 2}
+  - {fileID: 11400000, guid: 40ffb9e786b04408dad5cbe4a18b4aaf, type: 2}
+  - {fileID: 11400000, guid: 1459ec4fe999d413891984b5656fd440, type: 2}
+  - {fileID: 11400000, guid: 883dc8550005f4b099ad13092764265a, type: 2}
+  CoachLines:
+  - Speaker: 4
+    WhenLeak: 1
+    RequireBufferKid: 0
+    RequireBroke: 0
+    RequireFuelMiss: 0
+    Line: Grab is not a bus. Your pocket noticed.
+  - Speaker: 1
+    WhenLeak: 2
+    RequireBufferKid: 0
+    RequireBroke: 0
+    RequireFuelMiss: 0
+    Line: Gong Cha can wait. Recess already fed you.
+  - Speaker: 1
+    WhenLeak: 3
+    RequireBufferKid: 0
+    RequireBroke: 0
+    RequireFuelMiss: 0
+    Line: Canteen food is cheaper than going hungry all morning.
+  - Speaker: 4
+    WhenLeak: 0
+    RequireBufferKid: 1
+    RequireBroke: 0
+    RequireFuelMiss: 0
+    Line: Keep that $2. Something always comes up after school.
+  - Speaker: 4
+    WhenLeak: 0
+    RequireBufferKid: 0
+    RequireBroke: 1
+    RequireFuelMiss: 0
+    Line: Empty pocket before the last bell. Next Monday, lock a buffer first.
+  - Speaker: 4
+    WhenLeak: 0
+    RequireBufferKid: 0
+    RequireBroke: 0
+    RequireFuelMiss: 1
+    Line: You got through, but you were running on fumes.
+  - Speaker: 4
+    WhenLeak: 0
+    RequireBufferKid: 0
+    RequireBroke: 0
+    RequireFuelMiss: 0
+    Line: Energy first, then reputation, then the drink.
+  GrabLeakName: Grab
+  DrinksLeakName: drinks
+  SkipMealLeakName: skip meal
+  NoneLeakName: none
+  AuntieName: Canteen auntie
+  FriendName: Your friend
+  MumName: Mum
+  TeacherName: Form teacher
+  TitleSpeakerName: 6:40am
+  WakeEarliestMinute: 370
+  WakeLatestMinute: 415
+  BudgetTip: Budget
+  EnergyTip: Energy
+  ReputationTip: Reputation
+  KeepTip: Keep $2

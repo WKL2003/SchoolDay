@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c8f1e4a9b6d47c0a5e3d1f8b7049261, type: 3}
+  m_Name: Girl
+  m_EditorClassIdentifier: Assembly-CSharp::SchoolDay.CharacterLook
+  DisplayName: Girl
+  Idle: {fileID: 21300000, guid: 7c4e1a9d2b8f4e6a91d0c3b5a8472e10, type: 3}
+  HudFace: {fileID: 21300000, guid: f8c3a1d0472e4b9a86e5c1d0a3947b2e, type: 3}
+  HighEnergyReputation: {fileID: 21300000, guid: 3f8d6b2a1c9e4d71b5a047e8c2169f33, type: 3}
+  LowEnergy: {fileID: 21300000, guid: 9a12e4c7d6b84f3e8c5a1d0b7e294618, type: 3}
+  LowReputation: {fileID: 21300000, guid: 5d7b3e1a8c4f4a29b6e0d1c9f3825470, type: 3}
+  WaveFrames:
+  - {fileID: 21300000, guid: 93497bbcd1554878ae229c2ce89ab240, type: 3}
+  - {fileID: 21300000, guid: ce6dff1ad7bf464e83924d6936e96958, type: 3}
+  - {fileID: 21300000, guid: 7fd7dde0ac8f47fdab7846de8faba26d, type: 3}
+  IdleFrames:
+  - {fileID: 21300000, guid: 5b0fc6f8fdd44b2f87e516c9da1a6f01, type: 3}
+  - {fileID: 21300000, guid: 95855d0bf804459f952cc3f5cfb0c315, type: 3}
+  - {fileID: 21300000, guid: 21ab7b0c68dd424fafb97998b3b88d03, type: 3}
+  LowEnergyFrames:
+  - {fileID: 21300000, guid: db0675512a98405d92f475f3d75cf044, type: 3}
+  - {fileID: 21300000, guid: 1e432a5d1a824f929b18134f8275cbdc, type: 3}
+  - {fileID: 21300000, guid: 7eca8a26db5b4a3a8b36ed85f205a2a0, type: 3}
+  LowReputationFrames:
+  - {fileID: 21300000, guid: caa23abadbcb4f8383ccf3b815a8d83b, type: 3}
+  - {fileID: 21300000, guid: 7866f39a06b044f793da813bdf9bc3c9, type: 3}
+  - {fileID: 21300000, guid: fa624379dfea4b548627ab7b35ed2d0d, type: 3}
+  HighEnergyReputationFrames:
+  - {fileID: 21300000, guid: 2fe25cdbeead4c9fafa11bfe068a5a07, type: 3}
+  - {fileID: 21300000, guid: 7a7ea7b753df448bb24844c008adb0f4, type: 3}
+  - {fileID: 21300000, guid: c7f951b6f9bb4ae68d2731f2a8bffecd, type: 3}

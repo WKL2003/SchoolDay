@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46451a32519c46e388d225dc9264d699, type: 3}
+  m_Name: BreakfastPool
+  m_EditorClassIdentifier: Assembly-CSharp::SchoolDay.ChoicePool
+  Items:
+  - {fileID: 11400000, guid: 3fbab660986534c30ad8d445fc79d405, type: 2}
+  - {fileID: 11400000, guid: 926e9dfd5a82246b6b7f692c777da61e, type: 2}
+  - {fileID: 11400000, guid: a340c40b800914c999748bab3100b35c, type: 2}
+  - {fileID: 11400000, guid: 288890f138624402968dd18544417dc4, type: 2}
+  - {fileID: 11400000, guid: 77ac1dd26df343c1b37307b52eb912ad, type: 2}
+  - {fileID: 11400000, guid: 412d435f662645f9a6a6f35e3ba0f271, type: 2}
+  - {fileID: 11400000, guid: 6df9e57cadc44d2bba0ae578ce875298, type: 2}
+  - {fileID: 11400000, guid: 287613fbf2b94f388e0ee331c80c795c, type: 2}
+  Slots:
+  - Label: Skip-like
+    UseCostRange: 1
+    MinCost: 0
+    MaxCost: 2
+    RequireLateRisk: 0
+    RequireNegativeFace: 0
+    UseLeak: 1
+    Leak: 3
+    UseOverspend: 0
+    Overspend: 0
+  - Label: Canteen
+    UseCostRange: 1
+    MinCost: 0
+    MaxCost: 4.5
+    RequireLateRisk: 0
+    RequireNegativeFace: 0
+    UseLeak: 1
+    Leak: 0
+    UseOverspend: 0
+    Overspend: 0
+  - Label: Treat
+    UseCostRange: 1
+    MinCost: 5
+    MaxCost: 7.5
+    RequireLateRisk: 0
+    RequireNegativeFace: 0
+    UseLeak: 0
+    Leak: 0
+    UseOverspend: 0
+    Overspend: 0
+  ShuffleOrder: 1

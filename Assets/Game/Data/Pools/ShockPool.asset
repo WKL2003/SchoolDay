@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46451a32519c46e388d225dc9264d699, type: 3}
+  m_Name: ShockPool
+  m_EditorClassIdentifier: Assembly-CSharp::SchoolDay.ChoicePool
+  Items:
+  - {fileID: 11400000, guid: 5516b21c7dbcc4cac830fe6571d5f878, type: 2}
+  - {fileID: 11400000, guid: 4d3841f7999474764845927c9e3986f6, type: 2}
+  - {fileID: 11400000, guid: 46a8e3765802457b9bc85c6914e03b85, type: 2}
+  - {fileID: 11400000, guid: 0288bda60e754a54a1d666c7cdeb6fd9, type: 2}
+  - {fileID: 11400000, guid: f2814cfc15bd426db18afa5b9e9d41a1, type: 2}
+  - {fileID: 11400000, guid: 08a7dcb65ba44fdca7941322bf1032cd, type: 2}
+  - {fileID: 11400000, guid: cde6e9555d7f4ef9b6aa07c2e99b56d3, type: 2}
+  - {fileID: 11400000, guid: ff4aca1a84a14ceb800774f7c67f0fc1, type: 2}
+  - {fileID: 11400000, guid: 81a2b3c4d5e6f708192a3b4c5d6e7f90, type: 2}
+  - {fileID: 11400000, guid: 92b3c4d5e6f708192a3b4c5d6e7f8091, type: 2}
+  - {fileID: 11400000, guid: a3c4d5e6f708192a3b4c5d6e7f8091a2, type: 2}
+  - {fileID: 11400000, guid: b4d5e6f708192a3b4c5d6e7f8091a2b3, type: 2}
+  Slots:
+  - Label: Shock bill
+    UseCostRange: 1
+    MinCost: 4
+    MaxCost: 17
+    RequireLateRisk: 0
+    RequireNegativeFace: 0
+    UseLeak: 0
+    Leak: 0
+    UseOverspend: 1
+    Overspend: 2
+  ShuffleOrder: 0

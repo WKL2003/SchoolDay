@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e8f1c5a7b924d6e9a0c2d4f6b8e1a30, type: 3}
+  m_Name: promo_ride
+  m_EditorClassIdentifier: Assembly-CSharp::SchoolDay.PromoData
+  Id: promo_ride
+  DisplayName: 20% off
+  BannerLine: App pinged. Twenty percent off today.
+  PromptLine: Car's cheaper if I tap the code.
+  Group: ride
+  Badge: 
+  Chance: 0.3
+  Cut: 0
+  CutValue: 0.2
+  MinPaid: 4
+  UseCostRange: 0
+  MinCost: 0
+  MaxCost: 0
+  UseWeekdays: 0
+  Weekdays: []

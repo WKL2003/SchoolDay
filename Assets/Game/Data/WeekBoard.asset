@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af464e738074943a9e999e936968a05, type: 3}
+  m_Name: WeekBoard
+  m_EditorClassIdentifier: Assembly-CSharp::SchoolDay.WeekBoard
+  Day: {fileID: 11400000, guid: 6fb138f786c7a4d7e9280795f1c6d24b, type: 2}
+  WeekSeed: 0
+  PreviewWeekday: 1
+  UsePreviewWeekday: 0
+  PlayMode: 0
+  AfterFriday: 0
+  WeekendFallback: 1
+  ReshuffleNonce: 0
+  TitleHeadingFormat: School Day
+  TitleBodyFormat: '{1} in pocket.'
+  Breakfast:
+    Beat: {fileID: 11400000, guid: 5341090e1cd92476a97bffc5985a0d3e, type: 2}
+    Pool: {fileID: 11400000, guid: 02569116b2bc4d4897a3e30410e6a792, type: 2}
+  Transit:
+    Beat: {fileID: 11400000, guid: 40ffb9e786b04408dad5cbe4a18b4aaf, type: 2}
+    Pool: {fileID: 11400000, guid: e9f0dd01226845ba867381f1f554edd1, type: 2}
+  Fomo:
+    Beat: {fileID: 11400000, guid: 1459ec4fe999d413891984b5656fd440, type: 2}
+    Pool: {fileID: 11400000, guid: 27faae6694da4f969d681a9086bc9112, type: 2}
+  Shock:
+    Beat: {fileID: 11400000, guid: 883dc8550005f4b099ad13092764265a, type: 2}
+    Pool: {fileID: 11400000, guid: ac09458a06c94a3a842b749a7c0a05ce, type: 2}
+  Promos: {fileID: 11400000, guid: 8a1c3e5f7b9d4e6a8c0e2f4a6b8d1c52, type: 2}
